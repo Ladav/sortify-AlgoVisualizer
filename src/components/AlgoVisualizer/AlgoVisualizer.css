@@ -1,0 +1,10 @@
+/** 66ed95 */
+.AlgoVisualizer {
+    position: relative;
+    width: calc(100% - 250px);
+    background-color: #effdf4;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+}

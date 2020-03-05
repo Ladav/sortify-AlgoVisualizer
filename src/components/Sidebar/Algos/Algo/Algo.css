@@ -1,0 +1,28 @@
+.Algo {
+    width: 100%;
+    font-size: 18px;
+    margin: 2px 0;
+    padding: 7px 15px;
+    background-color: #66ed95;
+    border: 2px solid #38e876;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color, border 0.3;
+    -webkit-transition: background-color, border 0.3;
+    -moz-transition: background-color, border 0.3;
+    -ms-transition: background-color, border 0.3;
+    -o-transition: background-color, border 0.3;
+}
+.Algo:hover {
+    transform: scale(1.07);
+    -webkit-transform: scale(1.07);
+    -moz-transform: scale(1.07);
+    -ms-transform: scale(1.07);
+    -o-transform: scale(1.07);
+}
+.Active {
+    opacity: 0.9;
+    background-color: #38e876;
+    border: 3px solid #66ed95;
+}
+    

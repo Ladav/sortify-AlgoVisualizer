@@ -1,0 +1,40 @@
+.DetailsBox {
+    position: absolute;
+    /* left: 5%;
+    bottom: 5%; */
+    width: 220px;
+    height: 109px;
+    padding: 10px;
+    opacity: 0.8;
+    background-color: #38e876;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    z-index: 9999;
+}
+
+.Box {
+    width: 200px;
+    height: 40px;
+    background: #66ed95;
+    padding:  5px 10px;
+    margin: 3px 0px;
+    border-radius: 35px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    -ms-border-radius: 35px;
+    -o-border-radius: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.Label,.Value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Label { width: 105px; }
+.Value { width: 52px; }
