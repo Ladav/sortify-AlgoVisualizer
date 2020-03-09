@@ -1,18 +1,19 @@
 import * as actionTypes from '../action/actionTypes';
+import { updateObject } from '../utility';
 
 const initialState = {
     inputArray: [344, 4, 32, 232, 45, 67, 222, 42, 433, 90, 122, 343, 232, 49, 55, 290, 500],
     sortedBar: [],  // there index will be used
     activeBar: [],
     algorithm: {
-        algos: ['bubble', 'bubbleImproved', 'insertion', 'selection', 'radix', 'merge', 'quick'],
+        algos: ['bubble', 'bubbleImproved', 'insertion', 'selection', 'radix', 'quick'],
         value: 'bubble'
     },
     slider: {
         speed: { value: 400, max: 2000, min: 1, disabled: false },
         size: { value: 20, max: 300, min: 2, disabled: false }
     },
-    bar: { width: 20, margin: 2 },
+    bar: { width: 20, margin: 4 },
     arrayType: {
         options: ['sorted', 'unSorted', 'partiallySorted'],
         value: 'unSorted',
@@ -26,122 +27,82 @@ const initialState = {
 };
 
 const sizeSliderChanged = (state, action) => {
-    const updatedState = {
-        ...state,
+    const updatedSlider = updateObject(state.slider, {...state.slider});
+    updatedSlider[action.name].value = +action.value;
+    const updatedBar = updateObject(state.bar, { width: action.bar.width, margin: action.bar.margin });
+    const updatedDetails = updateObject(state.details, { comparison: 0, arrayAccess: 0 });
+    return updateObject(state, {
         inputArray: [...action.updatedArr],
-        activeBar: [],  // emptying the active and sorted bars
-        sortedBar: [],
-        slider: {
-            ...state.slider
-        },
-        bar: { width: action.bar.width, margin: action.bar.margin },
-        stop: true
-    };
-    updatedState.slider[action.name].value = +action.value;
-    return updatedState;
+        activeBar: [], sortedBar: [],  // emptying the active and sorted bars
+        slider: updatedSlider,
+        bar: updatedBar,
+        stop: true,
+        details: updatedDetails
+    });
 };
 const speedSliderChanged = (state, action) => {
-    const updatedSlider = {
-        ...state,
-        slider: { ...state.slider }
-    };
-
-    updatedSlider.slider[action.name].value = +action.value;
-    return updatedSlider;
-};
-const updateArray = (state, action) => {
-    return {
-        ...state,
-        inputArray: action.updatedArr
-    };
+    const updatedSlider = updateObject(state.slider, { ...state.slider });
+    updatedSlider[action.name].value = +action.value;
+    return updateObject(state, { slider: updatedSlider});
 };
 const startSorting = (state, action) => {
-    return {
-        ...state,
-        sorting: true,
-        stop: false
-    };
+    const updatedDetails = updateObject(state.details, { comparison: 0, arrayAccess: 0 });
+    return updateObject(state, {
+        sorting: true, stop: false,
+        details: updatedDetails
+    });
 };
 const stopSorting = (state, action) => {
-    return {
-        ...state,
-        sorting: false,
-        stop: true
-    };
+    return updateObject(state, { sorting: false, stop: true });
+};
+const updateArray = (state, action) => {
+    return updateObject(state, { inputArray: action.updatedArr });
 };
 const setStopOff = (state, action) => {
-    return {
-        ...state,
-        stop: false
-    };
+    return updateObject(state, { stop: false });
+};
+const highlightBars = (state, action) => {
+    return updateObject(state, { activeBar: [...action.bars] });
+};
+const updateSortedBars = (state, action) => {
+    return { ...state, sortedBar: [...state.sortedBar, ...action.bars] };
 };
 const toggleSpeed = (state, action) => {
-    return {
-        ...state,
-        slider: {
-            ...state.slider,
-            speed: {
-                ...state.slider.speed,
-                disabled: !state.slider.speed.disabled
-            }
-        }
-    };
+    const updatedSpeed = updateObject(state.slider.speed, {disabled: !state.slider.speed.disabled});
+    const updatedSlider = updateObject(state.slider, { speed: updatedSpeed });
+    return updateObject(state, { slider: updatedSlider });
 };
 const arrTypeChanged = (state, action) => {
-    console.log(action.arrayType)
+    const updatedBar = updateObject(state.bar, { width: action.bar.width, margin: action.bar.margin });
+    const updatedArrayType = updateObject(state.arrayType, {value: action.arrayType});
+    const updatedDetails = updateObject(state.details, { comparison: 0, arrayAccess: 0 });
     return {
         ...state,
         inputArray: action.updatedArr,
-        activeBar: [],  // emptying the active and sorted bars
-        sortedBar: [],
-        bar: { width: action.bar.width, margin: action.bar.margin },
-        arrayType: {
-            ...state.arrayType,
-            value: action.arrayType
-        }
+        activeBar: [], sortedBar: [],  // emptying the active and sorted bars
+        bar: updatedBar,
+        arrayType: updatedArrayType,
+        details: updatedDetails
     };
 };
 const changeAlgorithm = (state, action) => {
+    const updatedAlgorithm = updateObject(state.algorithm, {value: action.name});
+    const updatedDetails = updateObject(state.details, { comparison: 0, arrayAccess: 0 });
     return {
         ...state,
         inputArray: action.updatedArr,
-        activeBar: [],  // emptying the active and sorted bars
-        sortedBar: [],
-        algorithm: {
-            ...state.algorithm,
-            value: action.name
-        }
-    };
-};
-const highlightBars = (state, action) => {
-    return {
-        ...state,
-        activeBar: [...action.bars]
-    };
-};
-const updateSortedBars = (state, action) => {
-    return {
-        ...state,
-        sortedBar: [...state.sortedBar, ...action.bars]
+        activeBar: [], sortedBar: [],  // emptying the active and sorted bars
+        algorithm: updatedAlgorithm,
+        details: updatedDetails
     };
 };
 const updateComparisonCount = (state, action) => {
-    return {
-        ...state,
-        details: {
-            ...state.details,
-            comparison: state.details.comparison + action.count
-        }
-    };
+    const updatedDetails = updateObject(state.details, {comparison: state.details.comparison + action.count});
+    return updateObject(state, {details: updatedDetails });
 };
 const updateAccessCount = (state, action) => {
-    return {
-        ...state,
-        details: {
-            ...state.details,
-            arrayAccess: state.details.arrayAccess + action.count
-        }
-    };
+    const updatedDetails = updateObject(state.details, {arrayAccess: state.details.arrayAccess + action.count});
+    return updateObject(state, {details: updatedDetails });
 };
 
 const reducer = (state = initialState, action) => {

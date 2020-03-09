@@ -9,6 +9,7 @@ const algo = (props) => {
     let algorithms = props.algorithm.algos.map(algo => {
         return <Algo name={algo}
             active={props.algorithm.value === algo ? true : false}
+            disabled={props.sorting}
             key={algo}
             selected={props.changeAlgo} />
     });
@@ -23,7 +24,9 @@ const algo = (props) => {
 
 const mapStateToProps = (state) => {
     return { 
-        algorithm: state.algorithm };
+        algorithm: state.algorithm,
+        sorting: state.sorting
+    };
 };
 const mapDispatchToProps = (dispatch) => {
     return {

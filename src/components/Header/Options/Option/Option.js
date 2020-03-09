@@ -14,7 +14,7 @@ const option = (props) => {
                 className={classes.RadioBtn}
                 name="arrayType"
                 value={props.Value}
-                onClick={() => props.selected(props.Value)} />
+                onClick={!props.disabled ? () => props.selected(props.Value) : null} />
         </p>
     );
 };

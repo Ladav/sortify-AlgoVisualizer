@@ -37,7 +37,6 @@ const mostDigits = (arr) => {
 export const radix = async (dispatch, state) => {
     let arr = [...state().inputArray];
     const speed = state().slider.speed.value;
-    let i,j;
     const maxDigitCount = mostDigits(arr);
     dispatch(incAccessCount(arr.length));    // array accessed for find the maximum no. of digit
     dispatch(incComparisonCount(arr.length));
@@ -64,15 +63,17 @@ export const radix = async (dispatch, state) => {
             dispatch(incAccessCount(2));    //  array accessed 2
             await wait(speed);
         }
-        console.log(backet);
         arr = [].concat(...backet); 
         dispatch(incAccessCount(arr.length));   // array accessed by concat to concatinate the elments
         dispatch(updateArr(arr));
     }
-    dispatch(incComparisonCount(maxDigitCount));
-    // hightlight the whole array return sorted element
     
-    dispatch(highlightSorted(arr.map((_,i)=>i)));
-    dispatch(updateArr(arr));
+    // clean the active bar's as the whole array is sorted
+    dispatch(highlightActive([-1,-1]));
+    // hightlight the whole array return sorted element
+    for(let i = 0; i < arr.length; i++) {
+        dispatch(highlightSorted([i]));
+        await wait(speed);
+    };
     exit(dispatch);
 };

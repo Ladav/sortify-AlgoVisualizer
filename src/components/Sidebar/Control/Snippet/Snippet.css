@@ -23,6 +23,7 @@
     padding-right: 5px;
     overflow: auto;
     white-space: nowrap;
+    word-spacing: 2px;
 }
 
 .Code::-webkit-scrollbar {

@@ -1,9 +1,7 @@
 export { bubble } from './bubble';
 export { bubbleImproved } from './bubbleImproved';
 export { radix } from './radix';
-
-// export  default {
-//     bubble,
-//     bubbleImproved,/// this one is not working right now so don't use it
-//     bubbly
-// };
+export { selection } from './selection';
+export { insertion } from './insertion';
+export { merge } from './merge';
+export { quick } from './quick';

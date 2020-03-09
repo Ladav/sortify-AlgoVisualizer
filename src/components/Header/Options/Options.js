@@ -21,12 +21,10 @@ const options = (props) => {
             textContent={TEXT_CONTENT[opt]}
             Value={opt}
             active={props.arrayType.value === opt ? true : false }
-            selected={props.arraySelected}/>
+            selected={props.arraySelected}
+            disabled={props.sorting}/>
     });
     return <div style={style}> {options} </div>
 };
-
-
-
 
 export default options;

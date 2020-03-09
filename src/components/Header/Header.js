@@ -11,7 +11,9 @@ const header = (props) => {
     return (
         <div className={classes.Header}>
             <Title />
-            <Options arrayType={props.arrayType} arraySelected={props.arraySelected}/>
+            <Options arrayType={props.arrayType}
+                arraySelected={props.arraySelected}
+                sorting={props.sorting} />
             <AlgoInfo algoName={props.algo} />
         </div>
     );
@@ -20,7 +22,8 @@ const header = (props) => {
 const mapStateToProps = (state) => {
     return {
         arrayType: state.arrayType,
-        algo: state.algorithm.value
+        algo: state.algorithm.value,
+        sorting: state.sorting
     };
 };
 const mapDispatchToProps = (dispatch) => {

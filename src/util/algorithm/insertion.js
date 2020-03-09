@@ -17,15 +17,16 @@ const exit = (dispatch) => {
     dispatch(setStopOff());
 };
 
-export const bubble = async (dispatch, state) => {
+export const insertion = async (dispatch, state) => {
     const arr = [...state().inputArray];
     const speed = state().slider.speed.value;
-    let i, j;
+    let i, j, cur;
 
     dispatch(startSorting());
     dispatch(toggleSpeedDisplay());
-    for(i = 0; i < arr.length; i++) {
-        for(j = 0; j < arr.length - (i+1); j++) {
+    for(i = 1; i < arr.length; i++) {
+        cur = arr[i];
+        for(j = i-1; j >= 0 && arr[j] > cur; j--) {
             // 1.highlight the bar's where comparision is being made(there index is being saved)
             dispatch(highlightActive([j, j+1]));
 
@@ -35,20 +36,23 @@ export const bubble = async (dispatch, state) => {
             }
 
             // 3. sorted elements
-            if(arr[j] > arr[j+1]) {   // 4. array accessed for comparison that why inc by 2
-                [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
-            
-                dispatch(incAccessCount(4));    // 4. array accessed for swapping so inc by 4
-                dispatch(updateArr(arr));
-            }
-            
-            // 4. Comparison and Access count
-            dispatch(incComparisonCount(1)); // 4. In each iteration one comparison is being made
-            dispatch(incAccessCount(2));
+            arr[j+1] = arr[j];
+            dispatch(updateArr(arr));
+            dispatch(incComparisonCount(1));
             await wait(speed);
+
         }
-        // 5. return sorted element
-        dispatch(highlightSorted([j]));
+        arr[j+1] = cur;
+        dispatch(updateArr(arr));
+        dispatch(incAccessCount(4));    // 4. array accessed for swapping so inc by 4
     }
+
+    // clean the active bar's as the whole array is sorted
+    dispatch(highlightActive([-1,-1]));
+    // highlight sorted element
+    for(i = 0; i < arr.length; i++) {
+        dispatch(highlightSorted([i]));
+        await wait(speed);
+    };
     exit(dispatch);
 };

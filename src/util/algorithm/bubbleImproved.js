@@ -1,10 +1,14 @@
-import { 
-    startSorting, 
+import {
+    startSorting,
     stopSorting,
     updateArr,
     setStopOff,     // stop is turned on, in case use presses the pause btn, or increase the size of array
     toggleSpeedDisplay,
-    wait    // wait is not a action
+    wait,    // wait is not a action
+    highlightActive,
+    highlightSorted,
+    incComparisonCount,
+    incAccessCount
 } from '../controlMethods';
 
 const exit = (dispatch) => {
@@ -13,32 +17,53 @@ const exit = (dispatch) => {
     dispatch(setStopOff());
     return undefined;
 }
-let x = 1;
+
 export const bubbleImproved = async (dispatch, state) => {
-    const arr = state().inputArray;
+    const arr = [...state().inputArray];
     const speed = state().slider.speed.value;
-    let noswap;
-    
+    let i, j, noswap;
+
     dispatch(startSorting());
     dispatch(toggleSpeedDisplay());
-    for(let i = 0; i < arr.length - 1; i++) {
+    for (i = 0; i < arr.length - 1; i++) {
         noswap = true;
-        for(let j = 0; j < arr.length - (i+1); j++) {
-            if(state().stop) {      // if user change the size of array while the algo is running then stop it execution
-                exit(dispatch);
-                return undefined;
+        for (j = 0; j < arr.length - (i + 1); j++) {
+            // 1.highlight the bar's where comparision is being made(there index is being saved)
+            dispatch(highlightActive([j, j + 1]));
+
+            // 2.if user change the size of array while the algo is running then stop it execution
+            if (state().stop) {
+                return exit(dispatch);
             }
 
-            if(arr[j] > arr[j+1]){
-                [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
-                
+            // 3. sorted elements
+            if (arr[j] > arr[j + 1]) {  // 4. array accessed for comparison that why inc by 2
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];    // 4. array access 4 times for swaping
+
+                dispatch(incAccessCount(4));    // 4. array accessed for swapping so inc by 4
                 dispatch(updateArr(arr));
-                await wait(speed);
                 noswap = false;
             }
-            console.log(x++)
+
+            // 4. Comparison and Access count
+            dispatch(incComparisonCount(1)); // 4. In each iteration one comparison is being made
+            dispatch(incAccessCount(2));
+            await wait(speed);
         }
-        if(noswap) dispatch(stopSorting());
+        // 5. return sorted element
+        dispatch(highlightSorted([j]));
+
+        if (noswap) {
+            // clean the active bar's as the whole array is sorted
+            dispatch(highlightActive([-1, -1]));
+            // hightlight the whole array return sorted element
+            for (let x = arr.length-i; x >= 0; x--) {
+                dispatch(highlightSorted([x]));
+                await wait(speed);
+            };
+            dispatch(stopSorting());
+            return exit(dispatch);
+        }
     }
     exit(dispatch);
 };

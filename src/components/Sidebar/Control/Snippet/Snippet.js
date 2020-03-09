@@ -4,11 +4,19 @@ import * as code from '../../../../util/sampleCode/index';
 import classes from './Snippet.css';
 
 class Snippet extends Component {
-    componentDidMount() {
-        console.log('[Snippet.js] componentDidMount');
+    updateSnippet = () => {
         const $code = document.querySelector('.code');
         $code.textContent = ''; 
         $code.insertAdjacentHTML('afterbegin',code[this.props.algoName]());
+    };
+    
+    componentDidMount() {
+        console.log('[Snippet.js] componentDidMount');
+        this.updateSnippet();
+    };
+    componentDidUpdate() {
+        console.log('[Snippet.js] componentDidUpdate');
+        this.updateSnippet();
     };
 
     render() {
