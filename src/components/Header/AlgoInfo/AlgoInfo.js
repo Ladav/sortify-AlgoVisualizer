@@ -7,7 +7,7 @@ const LINK = {
 
 const elements = (props) => {
     return (
-        <div className={classes.AlgoInfo__container}>
+        <div className={classes.AlgoInfo__Container}>
             <div className={classes.AlgoInfo}>
                 <h3>{props.algoName}</h3>
                 <a href={LINK[props.algo]} target="_blank">

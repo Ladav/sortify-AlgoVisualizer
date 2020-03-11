@@ -1,18 +1,13 @@
-.AlgoInfo__container {
-    width: 250px;
-    height: 100%;
-    position: relative;
-    right: 0;
-
+.AlgoInfo__Container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .AlgoInfo {
     width: 232px;
+    height: 42px;
     background: #66ed95;
-    margin: auto;
+    margin: 9px;
     padding: 8px;
     border-radius: 35px;
     -webkit-border-radius: 35px;
@@ -20,8 +15,11 @@
     -ms-border-radius: 35px;
     -o-border-radius: 35px;
     
+    display: -webkit-box;
+    
     display: flex;
-    justify-content: space-evenly;
+    -webkit-box-pack: space-evenly;
+            justify-content: space-evenly;
 }
 
 .AlgoInfo a {
@@ -37,9 +35,12 @@
     margin-left: 15px;
     cursor: pointer;
     border: 2px solid #fff;
+    display: -webkit-box;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
     border-radius: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
