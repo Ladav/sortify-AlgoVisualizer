@@ -1,4 +1,6 @@
 .AlgoInfo__container {
+    width: 250px;
+    height: 100%;
     position: relative;
     right: 0;
 
@@ -10,7 +12,7 @@
 .AlgoInfo {
     width: 232px;
     background: #66ed95;
-    margin-right: 9px;
+    margin: auto;
     padding: 8px;
     border-radius: 35px;
     -webkit-border-radius: 35px;

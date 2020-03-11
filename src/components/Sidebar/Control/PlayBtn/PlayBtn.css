@@ -13,7 +13,7 @@
     margin: 0 auto;
     font-size: 20px;
     color: inherit;
-    background-color: #66ed95;
+    background-color: #eee;
     border: 2px solid #66ed95;
     border-radius: 5px;
     outline: none;
@@ -37,6 +37,11 @@
     background-color: #38e876;
 }
 .Pause {
-    background-color: #fff;
+    background-color: #38e876;
     color: #66ed95;
+}
+.Pause:hover { background-color: #66ed95; }
+.PlayBtn img {
+    width: 18px;
+    font-size: 18px;
 }
