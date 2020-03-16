@@ -41,4 +41,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## UI
 
-![Application's User Interface](./temporary/github_UI_Photo.jpg)
+![Application's User Interface](./temporary/github_UI_Photo.png)
