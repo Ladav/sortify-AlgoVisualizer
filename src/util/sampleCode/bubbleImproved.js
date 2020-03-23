@@ -1,22 +1,22 @@
 export const bubbleImproved = () => {
     return `function(arr)<br>
     {<br>
-    &nbsp;&nbsp;    const len = arr.length;<br>
-    &nbsp;&nbsp;    let noswap;<br>
-    &nbsp;&nbsp;    for(let i = 0; i < len - 1; i++)<br>
-    &nbsp;&nbsp;    {<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;        noswap = true;<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;        for(let j = 0; j < len - (1+i); j++)<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;        {<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            if(arr[j] > arr[j+1]){<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                [arr[j], arr[j+1]] = [arr[j+1], arr[j]];<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                noswap = false;<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            }<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;        }<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;        if(noswap) {<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            break;<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;        }<br>
-    &nbsp;&nbsp;    }<br>
-    &nbsp;&nbsp;    return arr;<br>
+    &emsp;    const len = arr.length;<br>
+    &emsp;    let noswap;<br>
+    &emsp;    for(let i = 0; i < len - 1; i++)<br>
+    &emsp;    {<br>
+    &emsp;&emsp;        noswap = true;<br>
+    &emsp;&emsp;        for(let j = 0; j < len - (1+i); j++)<br>
+    &emsp;&emsp;        {<br>
+    &emsp;&emsp;&emsp;            if(arr[ j ] > arr[ j+1 ]){<br>
+    &emsp;&emsp;&emsp;&emsp;                [ arr[ j ], arr[ j+1 ] ] = [ arr[ j+1 ], arr[ j ] ];<br>
+    &emsp;&emsp;&emsp;&emsp;                noswap = false;<br>
+    &emsp;&emsp;&emsp;            }<br>
+    &emsp;&emsp;        }<br>
+    &emsp;&emsp;        if(noswap) {<br>
+    &emsp;&emsp;&emsp;            break;<br>
+    &emsp;&emsp;        }<br>
+    &emsp;    }<br>
+    &emsp;    return arr;<br>
     };`
 };

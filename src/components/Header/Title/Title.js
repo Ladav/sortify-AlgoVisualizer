@@ -1,5 +1,5 @@
 import React from 'react';
-import companyLogo from '../../../assets/diet.svg';
+import companyLogo from '../../../assets/sortify.svg';
 
 import classes from './Title.css';
 
