@@ -2,8 +2,9 @@ import React from 'react';
 
 import classes from './Algo.css';
 const algo = (props) => {
-    const attachedClasses = [classes.Algo];
+    const attachedClasses = [classes.Algo, ];
     if (props.active) attachedClasses.push(classes.Active);
+    else if(props.disabled) attachedClasses.push(classes.Disabled);
 
     return <h3 className={attachedClasses.join(' ')}
         onClick={!props.disabled ? () => props.selected(props.name) : null}>{props.name}</h3>

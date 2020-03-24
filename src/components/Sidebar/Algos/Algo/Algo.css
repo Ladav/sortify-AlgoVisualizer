@@ -20,9 +20,10 @@
     -ms-transform: scale(1.07);
     -o-transform: scale(1.07);
 }
-.Active {
+.Active{
     opacity: 0.9;
     background-color: #38e876;
     border: 3px solid #66ed95;
 }
+.Disabled { opacity: 0.7; }
     

@@ -39,7 +39,7 @@
     -o-transition: opacity 0.2s;
 
     /*firefox's scrollbar is not working*/
-    scrollbar-color: #e9e9e9;
+    scrollbar-color: rgba(233,233,233, 0.8) rgb(0, 0, 0); /* firefox */
     scrollbar-width: 5px;
 }
 .Algos::-webkit-scrollbar:hover { box-shadow: inset 0 0 60px rgba(12, 12, 12, 0); }

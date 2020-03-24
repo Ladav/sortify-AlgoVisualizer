@@ -2,7 +2,12 @@ import React from 'react';
 
 import classes from './AlgoInfo.css';
 const LINK = {
-    bubble: 'https://www.w3schools.com/tags/att_a_target.asp'
+    bubble: 'https://en.wikipedia.org/wiki/Bubble_sort',
+    bubbleImproved: 'https://en.wikipedia.org/wiki/Bubble_sort',
+    insertion: 'https://en.wikipedia.org/wiki/Insertion_sort',
+    selection: 'https://en.wikipedia.org/wiki/Selection_sort',
+    quick: 'https://en.wikipedia.org/wiki/Quicksort',
+    radix: 'https://en.wikipedia.org/wiki/Radix_sort'
 }
 
 const elements = (props) => {
@@ -10,7 +15,7 @@ const elements = (props) => {
         <div className={classes.AlgoInfo__Container}>
             <div className={classes.AlgoInfo}>
                 <h3>{props.algoName}</h3>
-                <a href={LINK[props.algo]} target="_blank">
+                <a href={LINK[props.algoName]} target="_blank" rel="noopener noreferrer">
                     <i className={classes.InformationIcon} title="See Algorithm">i</i>
                 </a>
             </div>
